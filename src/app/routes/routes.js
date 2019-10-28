@@ -53,7 +53,8 @@ module.exports = (app,mysqlConn) => { //exportando uma função com parametro ap
 
         tarefaDao.deletarTarefa(req.params.id)
         .then((rows) => {
-            res.send('Tarefa Deletada com sucesso')
+            res.send(rows)
+            console.log('tarefa deletada!' + req.params.id)
         })        
         .catch(err => console.log(err));
 
@@ -72,6 +73,15 @@ module.exports = (app,mysqlConn) => { //exportando uma função com parametro ap
         tarefaDao.atualizarTarefa(req.body)
         .then((rows) => {
             res.send('Tarefa atualizada com sucesso')
+        })        
+        .catch(err => console.log(err));
+
+    });
+    app.get('/finalizartarefas/:id', (req,res) => {
+        const tarefaDao = new TarefaDao(mysqlConn);
+        tarefaDao.finalizarTarefa(req.params.id)
+        .then((rows) => {
+            res.send(rows)
         })        
         .catch(err => console.log(err));
 

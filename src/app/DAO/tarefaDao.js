@@ -73,6 +73,19 @@ class TarefaDao {
             });
         });
     }
+    finalizarTarefa(id){
+        return new Promise((resolve,reject) => {
+
+            this._mysqlConn.query('update tarefa set status = 1 where id = ?',
+            [id],
+            (err,rows,fields) => {
+                
+                if(err) return reject('Não foi possível atualizar a tarefa\n' + err);
+
+                return resolve(rows);
+            });
+        });
+    }
 }
 
 module.exports = TarefaDao;
