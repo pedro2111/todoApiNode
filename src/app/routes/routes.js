@@ -105,7 +105,7 @@ module.exports = (app,mysqlConn) => { //exportando uma função com parametro ap
         const sistemaDao = new SistemaDao(mysqlConn);
 
         sistemaDao.criarSistema(req.body)
-        .then(() => res.send('Sistema criado com sucesso'))
+        .then((rows) => res.send(rows))
         .catch((err) => console.log(err))
     });
     
