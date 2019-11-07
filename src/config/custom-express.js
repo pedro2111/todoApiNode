@@ -3,6 +3,8 @@ const express = require('express');
 var cors = require('cors')
 var app = express();
 const bodyparser = require('body-parser');
+const session = require('express-session')
+
 
 app.use(bodyparser.urlencoded({//middleware 
     extended:true
@@ -11,6 +13,13 @@ app.use(bodyparser.urlencoded({//middleware
 app.use(bodyparser.json())
 
 app.use(cors())
+
+app.use(session({
+    secret: "mysecret",
+    resave: true,
+    saveUninitialized: true
+}))
+
 
 var mysqlConn = mysql.createConnection({
     host: 'localhost',
