@@ -123,6 +123,16 @@ module.exports = (app, mysqlConn) => { //exportando uma função com parametro a
             })
             .catch((err) => { console.log(err) })
     })
+    app.get('/usuario', (req, res) => {
+        const usuarioDao = new UsuarioDao(mysqlConn)
+
+        usuarioDao.listarUsuario()
+        .then((rows) => {
+            console.log(rows)
+            res.send(rows)
+        })
+        .catch((err) => console.log(err))
+    })
     app.post('/login', (req, res) => {
 
         const usuarioDao = new UsuarioDao(mysqlConn)

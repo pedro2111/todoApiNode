@@ -16,6 +16,17 @@ class UsuarioDao {
             })
         })
     }
+    listarUsuario() {
+
+        return new Promise((resolve, reject) => {
+            this._mysqlConn.query('select * from usuario', (err, rows, fileds) => {
+
+                if (err) return reject('Usuario nao encontrado!' + err);
+
+                return resolve(rows);
+            })
+        })
+    }
     criarUsuario(usuario) {
         var senhaCript = bcrypt.hashSync(usuario.senha, saltRounds);
         return new Promise((resolve, reject) => {

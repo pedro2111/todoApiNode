@@ -21,6 +21,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "json-server": "^0.15.1",
     "nodemon": "^1.19.4"
   }
 }
